@@ -1,10 +1,10 @@
 # Download MuJoCo
 echo "Checking if we have MuJoCo..."
-if [ -f "mujoco-3.3.2-linux-aarch64.tar.gz" ]; then
+if [ -f "mujoco-3.3.2-linux-x86_64.tar.gz" ]; then
   echo "We already do!"
 else
   echo "Downloading now"
-  curl -sL -o mujoco-3.3.2-linux-aarch64.tar.gz https://github.com/google-deepmind/mujoco/releases/download/3.3.2/mujoco-3.3.2-linux-aarch64.tar.gz
+  curl -sL -o mujoco-3.3.2-linux-x86_64.tar.gz https://github.com/google-deepmind/mujoco/releases/download/3.3.2/mujoco-3.3.2-linux-x86_64.tar.gz
 fi
 
 # Download Assets

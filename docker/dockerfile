@@ -49,9 +49,9 @@ RUN curl -sS https://bootstrap.pypa.io/get-pip.py | python3
 # Create Mujoco subdir.
 RUN mkdir /root/.mujoco
 WORKDIR /root/.mujoco
-COPY mujoco-3.3.2-linux-aarch64.tar.gz .
-RUN tar -xvzf mujoco-3.3.2-linux-aarch64.tar.gz
-RUN rm -r mujoco-3.3.2-linux-aarch64.tar.gz
+COPY mujoco-3.3.2-linux-x86_64.tar.gz .
+RUN tar -xvzf mujoco-3.3.2-linux-x86_64.tar.gz
+RUN rm -r mujoco-3.3.2-linux-x86_64.tar.gz
 
 # Add LD_LIBRARY_PATH environment variable.
 ENV LD_LIBRARY_PATH "/root/.mujoco/mujoco-3.3.2/bin:${LD_LIBRARY_PATH}"
@@ -59,14 +59,6 @@ RUN echo 'export LD_LIBRARY_PATH=/root/.mujoco/mujoco-3.3.2/bin:${LD_LIBRARY_PAT
 
 # Install MuJoCo Python Bindings
 RUN apt update -y
-# RUN pip install setuptools
-RUN pip install \
-    mujoco \
-    swig \
-    imageio \
-    box2d-py\
-    gymnasium \
-    gymnasium[all]
 
 # Install PyTorch
 RUN pip install \
@@ -75,10 +67,19 @@ RUN pip install \
     torchvision \
     --index-url https://download.pytorch.org/whl/cu128
 
+# RUN pip install setuptools
+RUN pip install \
+    mujoco \
+    swig \
+    imageio 
+
 # Install other Python Deps
 RUN pip install \
     matplotlib \
+    box2d-py \
     numpy \
     pandas \
     seaborn \
     PyQt5
+
+RUN pip install gymnasium[all]
